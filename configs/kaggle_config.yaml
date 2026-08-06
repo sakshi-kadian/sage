@@ -5,8 +5,8 @@ model:
   max_position_embeddings: 512
 
 training:
-  batch_size: 4             # Optimized for dual 16GB T4 GPUs
-  gradient_accumulation_steps: 8
+  batch_size: 1             # Reduced to 1 to prevent CUDA Out Of Memory
+  gradient_accumulation_steps: 32  # Increased to maintain effective batch size of 32
   learning_rate: 1e-5
   weight_decay: 0.01
   num_train_epochs: 3
