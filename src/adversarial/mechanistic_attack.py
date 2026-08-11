@@ -76,7 +76,7 @@ class MechanisticAttack:
           - substitutions: number of words swapped
           - token_ranking: the attention rollout influence scores used
         """
-        # ── Step 1: Run Attention Rollout to get token influence scores ──────
+        # Step 1: Run Attention Rollout to get token influence scores
         rollout_result = run_attention_rollout(
             model=self.model,
             tokenizer=self.tokenizer,
@@ -89,7 +89,7 @@ class MechanisticAttack:
         subtokens = rollout_result['tokens']          # e.g. ['▁I', '▁deeply', ...]
         influence = rollout_result['cls_influence']   # shape: (n_tokens,)
 
-        # ── Step 2: Map subtokens → whole words, aggregate influence ──────────
+        # Step 2: Map subtokens to whole words, aggregate influence
         # DeBERTa uses SentencePiece; leading ▁ means start of a new word.
         word_influence = {}   # word_str -> max influence across its subtokens
         word_positions = {}   # word_str -> list of subtoken indices
@@ -122,10 +122,10 @@ class MechanisticAttack:
                                           max(influence[j] for j in current_indices))
                 word_positions.setdefault(key, current_indices[:])
 
-        # ── Step 3: Sort words by influence (highest first) ───────────────────
+        # Step 3: Sort words by influence (highest first)
         ranked_words = sorted(word_influence.items(), key=lambda x: x[1], reverse=True)
 
-        # ── Step 4: Greedy synonym substitution ───────────────────────────────
+        # Step 4: Greedy synonym substitution
         # Work on a plain word-list for easy in-place substitution
         words = re.findall(r'\b\w+\b', text)
         current_text = text
