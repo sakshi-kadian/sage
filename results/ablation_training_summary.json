@@ -1,0 +1,17 @@
+[
+  {
+    "adv_ratio": 0.1,
+    "ratio_label": "10pct",
+    "n_pairs": 90,
+    "epochs": 1,
+    "metrics_per_epoch": [
+      {
+        "epoch": 1,
+        "train_loss": 0.7205,
+        "train_acc": 0.4333
+      }
+    ],
+    "final_train_acc": 0.4333,
+    "checkpoint": "models/ablation\\reward_model_adv_10pct.pt"
+  }
+]
