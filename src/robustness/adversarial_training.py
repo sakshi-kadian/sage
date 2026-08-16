@@ -43,7 +43,7 @@ RESULTS_DIR = "results"
 
 # Training hyperparameters - kept identical to the original training
 # to isolate the effect of the adversarial data, not the hyperparameters.
-LEARNING_RATE = 1e-5
+LEARNING_RATE = 1e-6
 EPOCHS = 2                  # Fine-tuning - fewer epochs than original training
 BATCH_SIZE = 1
 GRADIENT_ACCUMULATION = 16  # Effective batch size = 16
@@ -272,10 +272,11 @@ def run_ablation_study(
         print(f"\n  Loading base checkpoint: {BASE_CHECKPOINT}")
         model = DeBERTaRewardModel(MODEL_NAME)
         if os.path.exists(BASE_CHECKPOINT):
-            model.load_state_dict(torch.load(BASE_CHECKPOINT, map_location=device))
+            model.load_state_dict(torch.load(BASE_CHECKPOINT, map_location='cpu'))
             print("  Loaded trained weights.")
         else:
             print("  WARNING: No trained weights found, using untrained model.")
+        model = model.float()  # Force float32 to prevent NaN on Kaggle T4
         model.to(device)
 
         # Optimizer and scheduler - same as original training
