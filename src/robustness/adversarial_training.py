@@ -44,7 +44,7 @@ RESULTS_DIR = "results"
 # Training hyperparameters - kept identical to the original training
 # to isolate the effect of the adversarial data, not the hyperparameters.
 LEARNING_RATE = 1e-6
-EPOCHS = 2                  # Fine-tuning - fewer epochs than original training
+EPOCHS = 5                  # Fine-tuning - enough epochs to show defense differentiation
 BATCH_SIZE = 1
 GRADIENT_ACCUMULATION = 16  # Effective batch size = 16
 MAX_LENGTH = 256
