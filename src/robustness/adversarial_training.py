@@ -14,7 +14,6 @@ Ablation Study Design:
 Each model is saved as a separate checkpoint so Figure 3 can plot the
 clean accuracy vs. adversarial robustness trade-off curve.
 
-Designed to run on Kaggle GPU (T4/P100) for Day 15 compute.
 """
 
 import os
@@ -37,12 +36,12 @@ from src.utils import AverageMeter, calculate_accuracy
 # Config
 
 MODEL_NAME = "microsoft/deberta-v3-large"
-BASE_CHECKPOINT = "models/deberta_reward_model.pt"     # Day 3 trained weights
-ADV_DATA_PATH = "data/adv_training_pairs.json"         # Day 13 generated dataset
+BASE_CHECKPOINT = "checkpoints/baseline_epoch_3.pt"     # Trained base model weights
+ADV_DATA_PATH = "data/adv_training_pairs.json"         # Generated adversarial dataset
 OUTPUT_DIR = "models/ablation"                          # Saved checkpoints
 RESULTS_DIR = "results"
 
-# Training hyperparameters - kept identical to the original training (Day 3)
+# Training hyperparameters - kept identical to the original training
 # to isolate the effect of the adversarial data, not the hyperparameters.
 LEARNING_RATE = 1e-5
 EPOCHS = 2                  # Fine-tuning - fewer epochs than original training
@@ -297,7 +296,7 @@ def run_ablation_study(
                 model, dataloader, optimizer, scheduler, device, epoch
             )
             # For evaluation, re-use the training data (no separate val set here;
-            # the final evaluation on clean test data is done in Day 16's notebook)
+            # the final evaluation on clean test data is done later)
             print(f"  Train loss: {train_loss:.4f} | Train acc: {train_acc:.4f}")
             ratio_metrics.append({
                 'epoch': epoch,
@@ -320,7 +319,7 @@ def run_ablation_study(
             'checkpoint': ckpt_path
         })
 
-    # Save summary results JSON for Day 16 notebook to pick up
+    # Save summary results JSON for evaluation
     results_path = os.path.join(RESULTS_DIR, 'ablation_training_summary.json')
     with open(results_path, 'w') as f:
         json.dump(all_results, f, indent=2)
