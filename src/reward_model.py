@@ -32,7 +32,8 @@ class DeBERTaRewardModel(nn.Module):
         # Use the [CLS] token equivalent (first token) for DeBERTa
         pooled_output = outputs.last_hidden_state[:, 0, :]
         
-        # Get scalar reward
+        # Get scalar reward (cast to match the head's dtype to prevent Kaggle float16 mismatches)
+        pooled_output = pooled_output.to(self.reward_head[1].weight.dtype)
         reward = self.reward_head(pooled_output)
         return reward.squeeze(-1)
 
