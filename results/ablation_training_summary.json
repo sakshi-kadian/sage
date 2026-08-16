@@ -3,15 +3,60 @@
     "adv_ratio": 0.1,
     "ratio_label": "10pct",
     "n_pairs": 90,
-    "epochs": 1,
+    "epochs": 2,
     "metrics_per_epoch": [
       {
         "epoch": 1,
-        "train_loss": 0.7205,
-        "train_acc": 0.4333
+        "train_loss": 0.9266,
+        "train_acc": 0.5667
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.8577,
+        "train_acc": 0.5778
       }
     ],
-    "final_train_acc": 0.4333,
-    "checkpoint": "models/ablation\\reward_model_adv_10pct.pt"
+    "final_train_acc": 0.5778,
+    "checkpoint": "/kaggle/working/models/ablation/reward_model_adv_10pct.pt"
+  },
+  {
+    "adv_ratio": 0.25,
+    "ratio_label": "25pct",
+    "n_pairs": 108,
+    "epochs": 2,
+    "metrics_per_epoch": [
+      {
+        "epoch": 1,
+        "train_loss": 1.0701,
+        "train_acc": 0.4907
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.7625,
+        "train_acc": 0.6389
+      }
+    ],
+    "final_train_acc": 0.6389,
+    "checkpoint": "/kaggle/working/models/ablation/reward_model_adv_25pct.pt"
+  },
+  {
+    "adv_ratio": 0.5,
+    "ratio_label": "50pct",
+    "n_pairs": 54,
+    "epochs": 2,
+    "metrics_per_epoch": [
+      {
+        "epoch": 1,
+        "train_loss": 1.1653,
+        "train_acc": 0.5556
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.9705,
+        "train_acc": 0.5
+      }
+    ],
+    "final_train_acc": 0.5,
+    "checkpoint": "/kaggle/working/models/ablation/reward_model_adv_50pct.pt"
   }
 ]
