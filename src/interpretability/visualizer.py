@@ -21,6 +21,8 @@ plt.rcParams.update({
     "font.family": "DejaVu Sans",
     "font.size": 10,
     "axes.titlesize": 13,
+    "axes.titleweight": "bold",
+    "axes.titlepad": 14,
     "axes.labelsize": 11,
     "figure.dpi": 150,
 })
