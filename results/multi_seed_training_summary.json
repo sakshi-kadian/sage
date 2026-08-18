@@ -1,0 +1,44 @@
+[
+  {
+    "seed": 1,
+    "label": "baseline",
+    "adv_ratio": 0.0,
+    "checkpoint": "/kaggle/working/models/multi_seed/baseline_seed_1.pt",
+    "final_train_acc": 0.5185
+  },
+  {
+    "seed": 1,
+    "label": "defended_25pct",
+    "adv_ratio": 0.25,
+    "checkpoint": "/kaggle/working/models/multi_seed/defended_25pct_seed_1.pt",
+    "final_train_acc": 0.5741
+  },
+  {
+    "seed": 2,
+    "label": "baseline",
+    "adv_ratio": 0.0,
+    "checkpoint": "/kaggle/working/models/multi_seed/baseline_seed_2.pt",
+    "final_train_acc": 0.5926
+  },
+  {
+    "seed": 2,
+    "label": "defended_25pct",
+    "adv_ratio": 0.25,
+    "checkpoint": "/kaggle/working/models/multi_seed/defended_25pct_seed_2.pt",
+    "final_train_acc": 0.5926
+  },
+  {
+    "seed": 3,
+    "label": "baseline",
+    "adv_ratio": 0.0,
+    "checkpoint": "/kaggle/working/models/multi_seed/baseline_seed_3.pt",
+    "final_train_acc": 0.6543
+  },
+  {
+    "seed": 3,
+    "label": "defended_25pct",
+    "adv_ratio": 0.25,
+    "checkpoint": "/kaggle/working/models/multi_seed/defended_25pct_seed_3.pt",
+    "final_train_acc": 0.463
+  }
+]

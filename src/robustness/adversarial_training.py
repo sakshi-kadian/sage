@@ -119,6 +119,14 @@ def build_dataset_for_ratio(
     n_clean = len(clean)
     n_adv = len(adv)
     
+    if adv_ratio == 0.0:
+        sampled_clean = clean
+        sampled_adv = []
+        combined = sampled_clean + sampled_adv
+        random.shuffle(combined)
+        print(f"  Built dataset for ratio=0%: {len(combined)} pairs (0 adv + {len(clean)} clean), actual ratio = 0.0%")
+        return combined
+    
     # We want: final_adv / (final_adv + final_clean) = adv_ratio
     # Case 1: We have plenty of clean data, so we limit clean data based on n_adv.
     target_clean = int(n_adv / adv_ratio) - n_adv
@@ -230,17 +238,39 @@ def evaluate(
 def run_ablation_study(
     adv_ratios: list[float] = ADV_RATIOS,
     epochs: int = EPOCHS,
-    device: str = None
+    device: str = None,
+    seed: int = SEED
 ) -> list[dict]:
     """
     Run the full ablation study by training a separate model for each
     adversarial mixing ratio.
 
-    Returns a list of result dicts (one per ratio) with training metrics.
+    Parameters
+    ----------
+    adv_ratios : list of float
+        Adversarial mixing ratios to train (e.g. ``[0.10, 0.25, 0.50]``).
+    epochs : int, optional
+        Number of fine-tuning epochs per model. Defaults to ``EPOCHS``.
+    device : str, optional
+        ``'cuda'`` or ``'cpu'``. Auto-detected if ``None``.
+    seed : int, optional
+        Random seed for dataset sampling and torch. Defaults to ``SEED``.
+
+    Returns
+    -------
+    list of dict
+        One result dict per ratio containing training metrics and
+        the path to the saved checkpoint.
     """
     if device is None:
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    print(f"Device: {device}")
+    print(f"Device: {device} | Seed: {seed}")
+
+    # Set seeds for full reproducibility
+    random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -264,7 +294,7 @@ def run_ablation_study(
         print(f"{'='*60}")
 
         # Build dataset for this ratio
-        pairs = build_dataset_for_ratio(all_pairs, adv_ratio=ratio)
+        pairs = build_dataset_for_ratio(all_pairs, adv_ratio=ratio, seed=seed)
         dataset = PairwiseDataset(pairs, tokenizer, max_length=MAX_LENGTH)
         dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 
