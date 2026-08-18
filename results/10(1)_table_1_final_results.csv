@@ -1,0 +1,4 @@
+Attack Type,Avg. Reward Drop (95% CI),Stealth Pass Rate (95% CI)
+Black-Box (WordNet),"0.03 [0.02, 0.03]","40.0% [28.0, 56.0]"
+Mechanistic (WordNet),"0.04 [0.04, 0.05]","22.0% [12.0, 34.0]"
+BERT MLM,"0.01 [0.01, 0.02]","54.0% [42.0, 68.0]"

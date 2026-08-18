@@ -1,0 +1,5 @@
+Adversarial Mix Ratio,Clean Accuracy (%),Avg. Reward Drop
+0% (Baseline),55.0%,1.502
+10% Adv,56.0%,1.515
+25% Adv,56.0%,1.491
+50% Adv,56.0%,1.495
