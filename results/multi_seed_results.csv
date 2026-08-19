@@ -1,0 +1,7 @@
+Model,Clean OOD Accuracy,Reward Drop
+Baseline (Seed 1),0.597,1.493414045734839
+Baseline (Seed 2),0.597,1.497055558995767
+Baseline (Seed 3),0.597,1.4855617366053842
+Defended 25% (Seed 1),0.597,1.4753833562135696
+Defended 25% (Seed 2),0.595,1.4978766156868502
+Defended 25% (Seed 3),0.597,1.4989824146032333

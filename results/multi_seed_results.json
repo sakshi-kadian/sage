@@ -1,0 +1,32 @@
+[
+    {
+        "Model": "Baseline (Seed 1)",
+        "Clean OOD Accuracy": 0.597,
+        "Reward Drop": 1.493414045734839
+    },
+    {
+        "Model": "Baseline (Seed 2)",
+        "Clean OOD Accuracy": 0.597,
+        "Reward Drop": 1.497055558995767
+    },
+    {
+        "Model": "Baseline (Seed 3)",
+        "Clean OOD Accuracy": 0.597,
+        "Reward Drop": 1.4855617366053842
+    },
+    {
+        "Model": "Defended 25% (Seed 1)",
+        "Clean OOD Accuracy": 0.597,
+        "Reward Drop": 1.4753833562135696
+    },
+    {
+        "Model": "Defended 25% (Seed 2)",
+        "Clean OOD Accuracy": 0.595,
+        "Reward Drop": 1.4978766156868502
+    },
+    {
+        "Model": "Defended 25% (Seed 3)",
+        "Clean OOD Accuracy": 0.597,
+        "Reward Drop": 1.4989824146032333
+    }
+]
