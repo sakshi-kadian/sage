@@ -93,7 +93,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = DeBERTaRewardModel(model_name)
     
-    model_path = os.path.join("models", "deberta_reward_model.pt")
+    model_path = os.path.join("models", "multi_seed", "baseline_seed_1.pt")
     if os.path.exists(model_path):
         model.load_state_dict(torch.load(model_path, map_location=device))
         print("Loaded trained weights.")
@@ -109,7 +109,7 @@ def main():
         print(f"Error: Could not find {data_path}. Run Day 1 data pipeline first.")
         return
         
-    texts = load_test_data(data_path, num_samples=50) # Run on 50 for local evaluation
+    texts = load_test_data(data_path, num_samples=100) # Evaluate on 100 samples
     
     # Run Evaluation
     df = evaluate_attacks(model, tokenizer, texts, device=device)
