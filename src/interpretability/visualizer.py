@@ -24,7 +24,7 @@ plt.rcParams.update({
     "axes.titleweight": "bold",
     "axes.titlepad": 14,
     "axes.labelsize": 11,
-    "figure.dpi": 150,
+    "figure.dpi": 130,
 })
 
 
@@ -170,11 +170,11 @@ def plot_chosen_vs_rejected(
     Returns:
         matplotlib Figure object.
     """
-    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
     fig.suptitle(
         f"Chosen (reward={chosen_result['reward']:.3f}) vs "
         f"Rejected (reward={rejected_result['reward']:.3f})",
-        fontsize=13, fontweight="bold"
+        fontsize=14, fontweight=600
     )
 
     for ax, result, label, colour_map in zip(
@@ -205,13 +205,13 @@ def plot_chosen_vs_rejected(
         ax.set_yticks(range(len(top_tokens)))
         ax.set_yticklabels(top_tokens, fontsize=9)
         ax.invert_yaxis()
-        ax.set_xlabel("Normalised Influence")
-        ax.set_title(label, fontsize=11)
+        ax.set_xlabel("Normalised Influence", labelpad=10)
+        ax.set_title(label, fontsize=13, fontweight='normal', pad=15)
         ax.set_xlim(0, 1.1)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
 
-    plt.tight_layout()
+    plt.tight_layout(w_pad=4.0)
 
     if save_path:
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
