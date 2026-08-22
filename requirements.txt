@@ -11,3 +11,5 @@ scikit-learn
 matplotlib
 seaborn
 pyarrow
+jupyter
+nltk
